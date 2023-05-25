@@ -6,9 +6,8 @@ module.exports = (sequelize) => {
   sequelize.define('dog', {
     id:{
       type: DataTypes.INTEGER,
-      allowNull:false,
       primaryKey: true,
-      require: true
+      autoIncrement: true
     },
     image:{
       type: DataTypes.STRING,
