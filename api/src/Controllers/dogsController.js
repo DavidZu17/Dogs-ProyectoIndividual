@@ -3,7 +3,7 @@ const axios = require('axios');
 const {API_KEY , API_URL ,ID_BASE_BD } = process.env ;
 const { Dog , Temperament } = require('../db');
 const { Op } = require("sequelize");
-let numBaseIdBD = parseInt(ID_BASE_BD) ;
+const  crypto  = require('crypto');
 
 
 
@@ -47,11 +47,6 @@ const getDogsById = async ( req , res ) =>{
         // con la tabla Temperament , se retorna el dog con todos sus atributos y sus relaciones.
         let { idRaza } = req.params;
 
-        //Se parsea el numero por parametro si  no lo es se lanza el error de dato incorrecto
-        idRaza = parseInt(idRaza);
-        if(isNaN(idRaza)) throw new Error('El id debe de ser un numero');
-
-
         //Se busca primero el Dog en la base de datos con el id incluyendo sus temperamentos
         let dogFound = await Dog.findByPk(idRaza, {include: [{
             model: Temperament,
@@ -65,7 +60,7 @@ const getDogsById = async ( req , res ) =>{
             const { data: allDogsFromApi } = await axios(`${API_URL}/?api_key=${API_KEY}`);
             //Se recorre el arreglo hasta encontrar el id especificado
             for (let i = 0; i < allDogsFromApi.length; i++) {
-                if(allDogsFromApi[i].id === idRaza){
+                if(allDogsFromApi[i].id == idRaza){
                     dogFound = allDogsFromApi[i];
                     break;
                 }
@@ -138,7 +133,7 @@ const dogByName = async ( req , res ) =>{
         })
         //Error si no se encuentra en ninguna base de datos
         if(dogFoundBD.length === 0 && dogsFoundApi.length === 0) throw new Error(`El Dog con el name: ${name}, no se encuentra registrado`)
-        //Si en las dos bases de datos Api y BD , huieron coincidencias se retorna los dos arreglos juntos
+        //Si en las dos bases de datos Api y BD , hubieron coincidencias se retorna los dos arreglos juntos
         if(dogFoundBD.length !== 0 && dogsFoundApi.length !== 0)  return res.status(200).json(dogFoundBD.concat(dogsFoundApi));
         //Si solo en una base de datos se encontro coincidencias retorna la correspondiente
         if(dogFoundBD.length === 0 || dogsFoundApi.length === 0){
@@ -166,7 +161,7 @@ const postDog = async( req , res ) => {
         
         //Se carga la lista de dog de Api
         const { data: allDogsFromApi } = await axios(`${API_URL}/?api_key=${API_KEY}`);
-        //Se recorre el arreglo hasta encontrar si hay un name igual para no tener repetidos, si no lo hay se puede agregar el Dog nuevo
+        //Se recorre el arreglo hasta encontrar si hay un igual para no tener repetidos, si no lo hay se puede agregar el Dog nuevo
         let dogFound = [];
         for (let i = 0; i < allDogsFromApi.length; i++) {
             if(allDogsFromApi[i].name === name){
@@ -174,7 +169,7 @@ const postDog = async( req , res ) => {
                 break;
             }
         }
-        if(dogFound.length !== 0) throw new Error(`El dog con name: ${name} ya se encuentra registrado 456`);
+        if(dogFound.length !== 0) throw new Error(`El dog con name: ${name} ya se encuentra registrado`);
 
 
 
@@ -184,8 +179,8 @@ const postDog = async( req , res ) => {
             where:{
                 name                
             },
-            defaults:{
-                id : numBaseIdBD,
+            defaults:{  
+                id: crypto.randomUUID(),             
                 image,
                 height,
                 weight,
@@ -194,8 +189,7 @@ const postDog = async( req , res ) => {
         })
         //Error si ya existe el usuario ingresado por formulario
         if(newDog[1]=== false) throw new Error(`El dog con name: ${name} ya se encuentra registrado`);
-       //Se incrementa la variable BASE_ID_BD para un posterior registro nuevo
-        numBaseIdBD++;
+       
         //se organiza los temperamentos en lista para agregarlos uno por uno
         const listaDeTemperaments = temperaments.split(',');
         //Se crea los temperamentos
