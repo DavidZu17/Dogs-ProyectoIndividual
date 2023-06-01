@@ -14,6 +14,7 @@ function Filters({ allTemperaments }) {
     const handleFiltTem = ( evento ) => {
         dispatch( orderDosgByTem( evento.target.value) );
     }
+    
 
     const handleOrder = () =>{
         if(orderAsOrDes.length !== 0 && orderByNameOrWeight.length !== 0 )

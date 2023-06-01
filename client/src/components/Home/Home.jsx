@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, connect } from 'react-redux';
 import { cargarAllDogsByName } from '../../redux/actions';
 import axios from 'axios';
+import CardDog from '../CardDog/CardDog';
 
 
 function Home(props) {
@@ -17,13 +18,18 @@ function Home(props) {
         dispatch( cargarAllDogsByName( name ));
     }
 
+
     
 
     return (
         <div className='containerHome'>
             <SearchBar functionCargarAllDogsByName={functionCargarAllDogsByName} />
             <Filters allTemperaments={allTemperaments} />
-            <CardsDogs dogs={ dogsByName.length !== 0 ? dogsByName:  alldogs} />
+            <CardsDogs data={ dogsByName.length !== 0 ? dogsByName:  alldogs} 
+            RenderComponent={CardDog}
+            buttonConst={3}
+            contentPerPage={8}
+            siblingCount={1}/>
         </div>
     )
 }
