@@ -1,0 +1,21 @@
+.containerFilters{
+    text-align: center;
+    background-color: rgb(141, 53, 158);
+    display:flex;
+    justify-content: space-between;
+    position: relative;
+}
+.ordenTemperaments{
+    background-color: rgb(139, 87, 87);
+}
+.orderTipo{
+    background-color: rgb(74, 115, 175);
+
+}
+.orderAsOrDes{
+    background-color: rgb(119, 212, 161);
+
+}
+.selectOption{
+    width: 120px;
+}

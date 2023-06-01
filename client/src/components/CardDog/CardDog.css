@@ -1,0 +1,13 @@
+.image{
+    position: absolute;
+    width: 10% ;    
+    height: 60%;
+    top:10%;
+    
+}
+
+.containerDog{
+    position: relative;
+    display: block;
+
+}

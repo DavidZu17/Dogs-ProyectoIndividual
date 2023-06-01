@@ -1,0 +1,37 @@
+.containerSearchBar{
+    text-align: center;
+    background-color: blue;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    height: 10%;
+}
+
+.searchInput{
+    position: absolute;
+    border-radius: 15px;
+    padding-left: 1%;
+    font-size: 18px;
+    width: 40%;
+    height: 30%;
+    top : 30%;
+    left: 10%;
+}
+.searchBoton{
+    position: relative;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    height: 60%;
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 90px;
+}
+.searchBotonDogNuevo{
+    position: relative;
+    height: 30%;
+    width: 20%;
+    top: 20%;
+    right: 10%;
+}

@@ -1,0 +1,9 @@
+.containerDetailDog{
+    background-color: blueviolet;
+    display: flex;
+    flex-direction: column;
+    justify-content:left;
+    position: relative;
+    width: 100%;
+    width: 100%;
+}
