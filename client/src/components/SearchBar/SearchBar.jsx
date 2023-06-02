@@ -28,7 +28,7 @@ function SearchBar ( { functionCargarAllDogsByName }){
         <div className='containerSearchBar'>  
             <h3>DOGS 🐾 </h3>
             <input type='search' className='searchInput' onChange={handleChange} value={ name } placeholder='Buscar perro por nombre...' onKeyUp={handleEnter} />                   
-            <button className='searchBoton' onClick={ () => functionCargarAllDogsByName( name )} ></button>
+            
             <button className='searchBotonDogNuevo' onClick={ handleAgregar } > Agregar Dog Nuevo</button>
         </div>
     );

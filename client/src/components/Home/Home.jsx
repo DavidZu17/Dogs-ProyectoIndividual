@@ -5,31 +5,33 @@ import './Home.css';
 import { useState, useEffect } from 'react';
 import { useDispatch, connect } from 'react-redux';
 import { cargarAllDogsByName } from '../../redux/actions';
-import axios from 'axios';
-import CardDog from '../CardDog/CardDog';
+const BOTONES_A_MOSTRAR = 3;
+const CANTIDAD_POR_PAGINA = 8 ;
+const BOTONES_HERMANOS = 1;
 
 
 function Home(props) {
     const { alldogs, allTemperaments ,dogsByName } = props;
+    const [ busqueda, setBusqueda ] = useState('');
     const dispatch = useDispatch();
-    const [dogsSearch, setDogSearch] = useState([]);
 
     const functionCargarAllDogsByName = async (name) => {
-        dispatch( cargarAllDogsByName( name ));
+         await dispatch( cargarAllDogsByName( name ));
+        setBusqueda(name);
     }
 
-
+ 
     
 
     return (
         <div className='containerHome'>
             <SearchBar functionCargarAllDogsByName={functionCargarAllDogsByName} />
             <Filters allTemperaments={allTemperaments} />
-            <CardsDogs data={ dogsByName.length !== 0 ? dogsByName:  alldogs} 
-            RenderComponent={CardDog}
-            buttonConst={3}
-            contentPerPage={8}
-            siblingCount={1}/>
+            <CardsDogs  dogs={ dogsByName.length !== 0 ? dogsByName:  alldogs} 
+                        title={ busqueda.length !== 0 ? `Se muestran los Dogs por nombre que contienen: ${busqueda}`:  'Todos los Perros' }
+                        botonesaMostrar={BOTONES_A_MOSTRAR}
+                        cantidadPorPagina={CANTIDAD_POR_PAGINA}
+                        botonesHermanos={BOTONES_HERMANOS}/>
         </div>
     )
 }
@@ -38,5 +40,6 @@ export function mapStateToProps(state) {
         dogsByName : state.dogsByName,
     }
 }
+
 
 export default connect(mapStateToProps,null)(Home);

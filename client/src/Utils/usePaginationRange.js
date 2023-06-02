@@ -1,22 +1,21 @@
 import { useMemo } from "react";
 export const DOTS = "...";
 
-const range = (start, end) => {
+const rango = (start, end) => {
   let length = end - start + 1;
   return Array.from({ length }, (_, index) => index + start);
 };
 
-export const usePaginationRange = ({
-  totalPageCount,
-  dataLimit,
-  buttonConst,
-  siblingCount,
-  currentPage,
+export const useFuncionRangoDePaginacion = ({
+  totalDePaginas,
+  botonesaMostrar,
+  botonesHermanos,
+  paginaActual,
 }) => {
-  const paginationRange = useMemo(() => {
+  const rangoDePaginacion = useMemo(() => {
     // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
     //El recuento de páginas se determina como siblingCount + firstPage + lastPage + currentPage + 2*DOTS
-    const totalPageNumbers = buttonConst + 2 * siblingCount;
+    const totalPageNumbers = botonesaMostrar + 2 * botonesHermanos;
 
     /*
           If the number of pages is less than the page numbers we want to show in our
@@ -25,14 +24,14 @@ export const usePaginationRange = ({
           Si el número de páginas es inferior a los números de página que queremos mostrar en nuestro
           paginationComponent, devolvemos el rango [1..totalPageCount]
         */
-    if (totalPageNumbers >= totalPageCount) {
-      return range(1, totalPageCount);
+    if (totalPageNumbers >= totalDePaginas) {
+      return rango(1, totalDePaginas);
     }
 
-    const leftSiblingIndex = Math.max(currentPage - siblingCount, 1);
-    const rightSiblingIndex = Math.min(
-      currentPage + siblingCount,
-      totalPageCount
+    const hermanosIzquierdos = Math.max(paginaActual - botonesHermanos, 1);
+    const hermanosDerechos = Math.min(
+      paginaActual + botonesHermanos,
+      totalDePaginas
     );
 
     /*
@@ -44,34 +43,34 @@ export const usePaginationRange = ({
           después/antes de que la página izquierda/derecha cuente, ya que eso conduciría a un cambio si nuestra Paginación
           tamaño del componente que no queremos
         */
-    const shouldShowLeftDots = leftSiblingIndex > 2;
-    const shouldShowRightDots = rightSiblingIndex <= totalPageCount - 2;
+    const mostrarPuntosIzquierdos = hermanosIzquierdos > 2;
+    const mostrarPuntosDerechos = hermanosDerechos <= totalDePaginas - 2;
 
-    const firstPageIndex = 1;
-    const lastPageIndex = totalPageCount;
+    const indicePrimeraPagina = 1;
+    const indiceUltimaPagina = totalDePaginas;
 
-    if (!shouldShowLeftDots && shouldShowRightDots) {
-      let leftItemCount = 3 + 2 * siblingCount;
-      let leftRange = range(1, leftItemCount);
+    if (!mostrarPuntosIzquierdos && mostrarPuntosDerechos) {
+      let izquierdos = 3 + 2 * botonesHermanos;
+      let rangoIzquierdo = rango(1, izquierdos);
 
-      return [...leftRange, DOTS, totalPageCount];
+      return [...rangoIzquierdo, DOTS, totalDePaginas];
     }
 
-    if (shouldShowLeftDots && !shouldShowRightDots) {
-      let rightItemCount = 3 + 2 * siblingCount;
-      let rightRange = range(
-        totalPageCount - rightItemCount + 1,
-        totalPageCount
+    if (mostrarPuntosIzquierdos && !mostrarPuntosDerechos) {
+      let derechos = 3 + 2 * botonesHermanos;
+      let rangoDerecho = rango(
+        totalDePaginas - derechos + 1,
+        totalDePaginas
       );
 
-      return [firstPageIndex, DOTS, ...rightRange];
+      return [indicePrimeraPagina, DOTS, ...rangoDerecho];
     }
 
-    if (shouldShowLeftDots && shouldShowRightDots) {
-      let middleRange = range(leftSiblingIndex, rightSiblingIndex);
-      return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex];
+    if (mostrarPuntosIzquierdos && mostrarPuntosDerechos) {
+      let rangoIntermedio = rango(hermanosIzquierdos, hermanosDerechos);
+      return [indicePrimeraPagina, DOTS, ...rangoIntermedio, DOTS, indiceUltimaPagina];
     }
-  }, [totalPageCount, siblingCount, currentPage, buttonConst]);
+  }, [totalDePaginas, botonesHermanos, paginaActual, botonesaMostrar]);
 
-  return paginationRange;
+  return rangoDePaginacion;
 };

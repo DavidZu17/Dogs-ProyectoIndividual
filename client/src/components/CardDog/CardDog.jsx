@@ -6,10 +6,10 @@ function CardDog ({ id , image , name , height, weight, temperaments, age } ){
  
     return(
         <div className='containerDog'>
-            <h6>Nombre:{name}</h6><br/>
+            <Link to={`/detail/${id}`}> <h2>{name}</h2></Link><br/>
             <img  src={ image } alt={ name } className='image'/><br/>
-            <label>Temperamentos: { temperaments }</label><br/>
-            <label>Peso: { weight }</label>
+            <h4>Temperamentos: </h4> <label>{ temperaments }</label><br/>
+            <h4>Peso:</h4><label> { weight }</label>
         </div>
     )
 }

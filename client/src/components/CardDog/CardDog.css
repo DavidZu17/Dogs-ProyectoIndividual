@@ -1,13 +1,21 @@
-.image{
-    position: absolute;
-    width: 10% ;    
+.image {
+    position: relative;
+    width: 20%;
     height: 60%;
-    top:10%;
-    
+    top: 10%;
+
 }
 
-.containerDog{
-    position: relative;
-    display: block;
-
+.containerDog {
+    display: flex;
+    flex-direction: column;
+    flex: 30% 0 65%;
+    align-items: center;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    width: 24%;
+    height: 450px;
+    margin: 20px auto;
+    padding: 15px 10px;
+    background: #fff;
+   
 }
