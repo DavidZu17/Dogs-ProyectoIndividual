@@ -14,14 +14,14 @@ function CardsDogs({
     botonesHermanos,
 }) {
 
-    const [totalDePaginas] = useState(Math.ceil(dogs.length / cantidadPorPagina));
     const [paginaActual, setPaginaActual] = useState(1);
+    let  totalDePaginas = Math.ceil((dogs.length) / cantidadPorPagina );
 
-    const rangoDePaginacion = useFuncionRangoDePaginacion({
-        totalDePaginas: totalDePaginas,
+    let rangoDePaginacion = useFuncionRangoDePaginacion({
+        totalDePaginas ,
         botonesaMostrar,
         botonesHermanos,
-        paginaActual: paginaActual,
+        paginaActual,
     });
 
     useEffect(() => {
@@ -29,7 +29,8 @@ function CardsDogs({
             behavior: "smooth",
             top: "0px",
         });
-    }, [paginaActual]);
+        
+    }, [ paginaActual ]);
 
     function siguientePagina() {
         setPaginaActual((page) => page + 1);
@@ -56,20 +57,21 @@ function CardsDogs({
                     <CardDog key={dog.id} id={dog.id} image={dog.image} name={dog.name} height={dog.height} weight={dog.weight} temperaments={dog.alltemperaments} age={dog.age} />
                 ))}
             </div>
-            {/* show the pagiantion
-                it consists of next and previous buttons
-                along with page numbers, in our case, 5 page
-                numbers at a time */}
+            {/* Se muestran los botones correspondientes, por defecto 5
+                el anterior , el siguiente y los botones primero , actual y
+                ultimo y su grupo de botones con o sin DOTS */}
             <div className="pagination">
-                {/* previous button */}
+                {/* Boton Anterior */}
                 <button
                     onClick={ anteriorPagina }
                     className={` prev ${ paginaActual === 1 ? "disabled" : ""}`}
                 >
                     Anterior
                 </button>
-                {/* show paginated button group */}
-                {rangoDePaginacion.map((item, index) => {
+                {/* Se muestra el grupo correspondiente de nums o DOTS segun el boton/pagina que se encuentre
+                */}
+                {                    
+                rangoDePaginacion.map((item, index) => {
                     if (item === DOTS) {
                         return (
                             <button key={index} className={`paginationItem`}>
@@ -88,7 +90,7 @@ function CardsDogs({
                         </button>
                     );
                 })}
-                {/* next button */}
+                {/* Boton siguiente */}
                 <button
                     onClick={siguientePagina}
                     className={`next ${paginaActual === totalDePaginas ? "disabled" : ""}`}

@@ -59,8 +59,9 @@ const validation = ( dogNew ) =>{
         }
     }
 
-    if( !regexURL.test( dogNew.image) ){
-        errors.image = 'Ingresar una url valida'
+    if( dogNew.image.length > 0 ){        
+        if(!regexURL.test( dogNew.image))
+             errors.image = 'Ingresar una url valida'
     }
     if(dogNew.allTemperaments.length === 0){
         errors.allTemperaments = 'Ingresar al menos un temperamento';

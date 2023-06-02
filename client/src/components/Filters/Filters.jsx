@@ -4,16 +4,16 @@ import { orderDosgByTem , ordenarByFilter } from '../../redux/actions';
 import { useEffect, useState } from 'react';
 
 
-function Filters({ allTemperaments }) {
+function Filters({ handleFiltTem , allTemperaments }) {
     const dispatch = useDispatch();
     const [ orderAsOrDes , setOrderAsOrDes ] = useState ('');
     const [ orderByNameOrWeight , setOrderByNameOrWeight ] = useState ('');
    
 
 /**Se filtran los dogs mostrados en interfaz por temperamento selecionado */
-    const handleFiltTem = ( evento ) => {
-        dispatch( orderDosgByTem( evento.target.value) );
-    }
+    // const handleFiltTem = ( evento ) => {
+    //     dispatch( orderDosgByTem( evento.target.value) );
+    // }
     
 
     const handleOrder = () =>{

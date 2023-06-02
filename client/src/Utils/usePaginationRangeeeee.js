@@ -12,8 +12,7 @@ export const useFuncionRangoDePaginacion = ({
   botonesHermanos,
   paginaActual,
 }) => {
-    console.log( totalDePaginas, ' utilssss')
- 
+  const rangoDePaginacion = useMemo(() => {
     // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
     //El recuento de páginas se determina como siblingCount + firstPage + lastPage + currentPage + 2*DOTS
     const totalPageNumbers = botonesaMostrar + 2 * botonesHermanos;
@@ -71,5 +70,7 @@ export const useFuncionRangoDePaginacion = ({
       let rangoIntermedio = rango(hermanosIzquierdos, hermanosDerechos);
       return [indicePrimeraPagina, DOTS, ...rangoIntermedio, DOTS, indiceUltimaPagina];
     }
-  
+  }, [totalDePaginas, botonesHermanos, paginaActual, botonesaMostrar]);
+
+  return rangoDePaginacion;
 };
