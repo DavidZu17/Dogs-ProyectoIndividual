@@ -3,19 +3,19 @@ import { useDispatch } from 'react-redux';
 import { orderDosgByTem, ordenarByFilter } from '../../redux/actions';
 import { useEffect, useState } from 'react';
 
-
+//Componente encargado de todo lo que tenga que ver de los filtros 
+// de temperamentos y los de ordenamiento
 function Filters({ handleFiltTem, allTemperaments }) {
     const dispatch = useDispatch();
+    //Estados que guardan las selecciones de ordenamiento
     const [orderAsOrDes, setOrderAsOrDes] = useState('');
     const [orderByNameOrWeight, setOrderByNameOrWeight] = useState('');
 
 
-    /**Se filtran los dogs mostrados en interfaz por temperamento selecionado */
-    // const handleFiltTem = ( evento ) => {
-    //     dispatch( orderDosgByTem( evento.target.value) );
-    // }
+    
 
-
+// fncion que despacha al reducer el ordenamiento por nombre o peso 
+// dependiendo de si es ascedente o descendente
     const handleOrder = () => {
         if (orderAsOrDes.length !== 0 && orderByNameOrWeight.length !== 0)
             dispatch(ordenarByFilter(orderAsOrDes, orderByNameOrWeight));
@@ -23,11 +23,11 @@ function Filters({ handleFiltTem, allTemperaments }) {
             alert(' Para filtrar se debe de tener un tipo ( Nombre / Peso ) y un tipo (Ascendente / Descendente )')
 
     }
-
+//actualiza el estado de ordenamiento ascedente o descendente
     const orderA = (evento) => {
         setOrderAsOrDes(evento.target.defaultValue)
     }
-
+// actualiza el estado de ordenamiento por nombre o por peso 
     const orderB = (evento) => {
         setOrderByNameOrWeight(evento.target.defaultValue);
     }
@@ -42,6 +42,7 @@ function Filters({ handleFiltTem, allTemperaments }) {
                 <select mode="multiple" onChange={handleFiltTem} className='selectOption'>
                     <option value="T">Temperamentos</option>
                     <option value='allDogs' key='0'>All Dogs</option>
+                    {/** Se despliegan los temperamentos pasados por parametros que vienen desde la carga de datos de la api */}
                     {allTemperaments?.map(({ name, id }) => (
                         <option value={name} key={id}>
                             {name}

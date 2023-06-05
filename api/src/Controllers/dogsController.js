@@ -38,6 +38,8 @@ const getDogs = async (req, res) => {
                 }
             }]
         });
+        //Si encuentra dog en la base de datos continua con el proceso
+        //Se agrega sus temperamentos en formato String name para su facil acceso.
 
         listRazasBD.forEach((raza) => {
             const temperamentsDog = raza.temperaments;
@@ -47,7 +49,7 @@ const getDogs = async (req, res) => {
             })
         });
 
-        
+
 
         //Si no hay en la base de datos retorna solo la de la Api
         if (listRazasBD.lenght === 0) return res.status(200).json(listaDeRazas);
@@ -144,8 +146,8 @@ const dogByName = async (req, res) => {
                 dogsFoundApi.push(dogNameInclude)
             }
         }
-       
 
+        //   Se buscan en la lista de base de datos junto con sus relaciones de teperamentos 
         let listRazasBD = await Dog.findAll({
             include: [{
                 model: Temperament,
@@ -154,7 +156,8 @@ const dogByName = async (req, res) => {
                 }
             }]
         });
-        
+        ///Se le asigna una variable String con los temperamentos de relacion para acceder en el front directamente 
+        // desde una misma variable , sea desde la api o Bd 
         listRazasBD.forEach((raza) => {
             const temperamentsDog = raza.temperaments;
             raza.dataValues.alltemperaments = '';
@@ -162,7 +165,10 @@ const dogByName = async (req, res) => {
                 raza.dataValues.alltemperaments += `${temperament.name},`;
             })
         });
-        const dogFoundBD = listRazasBD.filter( ( dog ) => dog.name.toLowerCase().includes(name.toLowerCase()) )
+
+
+        ///Se buscan coincidencias dentro de la lista de BD
+        const dogFoundBD = listRazasBD.filter((dog) => dog.name.toLowerCase().includes(name.toLowerCase()))
 
         //Error si no se encuentra en ninguna base de datos
         if (dogFoundBD.length === 0 && dogsFoundApi.length === 0) throw new Error(`El Dog con el name:  ${name} , no se encuentra registrado`)
@@ -187,7 +193,7 @@ const postDog = async (req, res) => {
         */
         const { name, image, height, weight, age, temperaments } = req.body;
         //Se verifica que los datos hallan sido ingresados en su totalidad y no vacios
-        if (!name || !height || !weight  || !age || !temperaments
+        if (!name || !height || !weight || !age || !temperaments
             || name.lenght === 0 || height.lenght === 0 || weight.lenght === 0
             || age.lenght === 0 || temperaments.lenght === 0)
             return res.status(400).send('Faltan datos para el registro del nuevo Dog');

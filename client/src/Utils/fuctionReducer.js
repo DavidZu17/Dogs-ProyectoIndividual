@@ -1,3 +1,4 @@
+// funcion que encarga y se utiliza para ordenar y filtar los dogs mostrados por peso , ya que peso se maneja como string
 export const fuctionFilterByType = ( copyFilter ) =>{
     const list1 = copyFilter.sort((dogA, dogB) => {
         const primerPesoInfo = dogA.weight.replace(" ", "").split("-")

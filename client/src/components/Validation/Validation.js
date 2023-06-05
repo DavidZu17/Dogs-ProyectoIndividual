@@ -1,8 +1,10 @@
 const validation = ( dogNew ) =>{
     const errors = {};
+    //constantes de regex para la validacoin de string y url
     const regexURL = /^(ftp|http|https):\/\/[^ "]+$/ ;
     const regexStringNum = /\d/;
 
+//se valida si el nombre cumple con las validacion de contener un nombre, un string no mayor a 30 caractres y que no contenga un numero 
     if(!dogNew.name ){
         errors.name = ' Debe de ingresar un Nombre para el Dog nuevo.'        
     }else if ( dogNew.name.length > 30){
@@ -10,7 +12,7 @@ const validation = ( dogNew ) =>{
     }else if( regexStringNum.test(dogNew.name) ){
         errors.name = 'El nombre no puede contener caracteres numericos'
     }
-    
+    //Se valida que halla una altura minima como necesaria, que sea menor que la mayor si existe la mayor y que sean numeros ingresados
     if(!dogNew.heightMin){
         errors.heightMin = 'Ingresar una altura minima'
     }else if(!regexStringNum.test(dogNew.heightMin)){
@@ -26,7 +28,7 @@ const validation = ( dogNew ) =>{
             errors.heightMax = 'La altura maxima debe de ser mayor a la minima'
         }
     }
-    
+    //Se valida que halla un peso minima como necesario, que sea menor que el mayor si existe el mayor y que sean numeros ingresados
     if(!dogNew.weightMin){
         errors.weightMin = 'Ingresar un peso minimo'
     }else if(!regexStringNum.test(dogNew.weightMin)){
@@ -42,7 +44,7 @@ const validation = ( dogNew ) =>{
             errors.weightMax = 'El peso maximo debe de ser mayor la minimo'
         }
     }
-    
+    //Se valida que halla una edad minima como necesaria, que sea menor que la mayor si existe la mayor y que sean numeros ingresados
     if(!dogNew.ageMin){
         errors.ageMin = 'Ingresar una edad minima'
     }else if(!regexStringNum.test(dogNew.ageMin)){
@@ -58,11 +60,12 @@ const validation = ( dogNew ) =>{
             errors.ageMax = 'La edad maxima debe de ser mayor a la minima'
         }
     }
-
+// se vailda que si se ingresa una url de imagen sea una url correspondiente
     if( dogNew.image.length > 0 ){        
         if(!regexURL.test( dogNew.image))
              errors.image = 'Ingresar una url valida'
     }
+    //Se valida que al menos halla seleccionado un temperamento para el dognuevo
     if(dogNew.allTemperaments.length === 0){
         errors.allTemperaments = 'Ingresar al menos un temperamento';
     }

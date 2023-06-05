@@ -24,6 +24,7 @@ const {saveInfoInDB} = require('./src/Utils/saveInfoInDB');
 // Syncing all the models at once.
 conn
   .sync({ force: true })
+  //Se cargan al iniciar el servidor todos los temperamentos que se enecuentran en la API 
   .then(() => saveInfoInDB())
   .then(() => {
     server.listen(3001, () => {

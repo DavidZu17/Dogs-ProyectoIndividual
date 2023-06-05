@@ -5,7 +5,7 @@ import { useFuncionRangoDePaginacion , DOTS } from '../../Utils/usePaginationRan
 
 
 
-
+//Componente que representa el contenedor de todas la cartas que se van a desplegar al cliente
 function CardsDogs({
     dogs,
     title,
@@ -14,9 +14,12 @@ function CardsDogs({
     botonesHermanos,
 }) {
 
+    //Estados locales que se encargan de indicar en que pagina se encuentran para desplegar las cartas de esa pagina 
     const [paginaActual, setPaginaActual] = useState(1);
+    // se guarda el total de pagina ( promedio ) segun los dos a mostrar 
     let  totalDePaginas = Math.ceil((dogs.length) / cantidadPorPagina );
 
+    //Se calcula los botones de paginacion , asegurando el primero , el ultimo y el actual mas los DOTS
     let rangoDePaginacion = useFuncionRangoDePaginacion({
         totalDePaginas ,
         botonesaMostrar,
@@ -24,6 +27,7 @@ function CardsDogs({
         paginaActual,
     });
 
+    //Se asegura que windows tenga el escroll y cada que se actualice suba al principio de la pagina 
     useEffect(() => {
         window.scrollTo({
             behavior: "smooth",
@@ -31,17 +35,20 @@ function CardsDogs({
         });
         
     }, [ paginaActual ]);
-
+//Accion para dar a la siguiente pagina 
     function siguientePagina() {
         setPaginaActual((page) => page + 1);
     }
+    //Accion para dar a la anterior pagina
     function anteriorPagina() {
         setPaginaActual((page) => page - 1);
     }
+    //Funcion de cada boton de paginacion que se dirige a la pagina correspondiente que representa dicho boton
     function changePage(event) {
         const pageNumber = Number(event.target.textContent);
         setPaginaActual(pageNumber);
     }
+    //funcion que despliega los dosg correspondientes de  cierta pagina 
     const dogsPaginaActual = () => {
         const indiceInicio = paginaActual * cantidadPorPagina - cantidadPorPagina;
         const inidceFin = indiceInicio + cantidadPorPagina;

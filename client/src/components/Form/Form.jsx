@@ -8,8 +8,9 @@ import imageForm from '../../images/ojitosForm.png';
 
 
 
-
+//Componente encargado del formulario de crear un dog nuevo
 const Form = ({ allTemperaments }) => {
+    //Estados de dognew a agregar y si hay errores en simultaneo
     const [dogNew, setDogNew] = useState({ name: '', heightMin: '', heightMax: '', weightMin: '', weightMax: '', ageMin: '', ageMax: '', image: '', allTemperaments: [] });
     const [errors, setErrors] = useState({ name: '', heightMin: '', heightMax: '', weightMin: '', weightMax: '', ageMin: '', ageMax: '', image: '', allTemperaments: [] });
 
@@ -17,10 +18,13 @@ const Form = ({ allTemperaments }) => {
     const navigate = useNavigate();
 
 
-
+//funcion que se encarga de subir y crear el dog nuevo a la base de datos
     const handleSubmit = (evento) => {
+        //Si no hay errores lo crea 
         if (Object.keys(errors).length === 0) {
+            //Se convierte en string los temperamentos que agrega el usuario en el Select del formulario
             let stringTemperaments = dogNew.allTemperaments.toString();
+            //Se crea objeto nuevo con los atributos correspondientes para el anvio  ala BD
             const dogDispa = {
                 name: dogNew.name,
                 height: dogNew.heightMax.length !== 0 ? `${dogNew.heightMin} - ${dogNew.heightMax}` : `${dogNew.heightMin}`,
@@ -29,6 +33,7 @@ const Form = ({ allTemperaments }) => {
                 image: dogNew.image,
                 temperaments: stringTemperaments
             }
+            //Se intenta despachar la funcion de agregar a la bd y si es satisfactorio se redirije a la pagina principal si no muestra el error correspondiente
             try {
                 dispatch(submitDog(dogDispa));
                 alert(`Se agrego el Dog : ${dogNew.name} de manera correcta`)
@@ -45,7 +50,7 @@ const Form = ({ allTemperaments }) => {
     }
 
    
-
+// funcion que se  encarga de filtrar todos los dogs desplegados en pantalla segun el temperamento seleccionado
     const handleChange = (evento) => {
         if (evento.target.name === 'allTemperaments') {
             var options = evento.target.options;
@@ -62,7 +67,8 @@ const Form = ({ allTemperaments }) => {
             setErrors(validation({ ...dogNew, [evento.target.name]: evento.target.value }));
         }
     }
-
+//funcion que muestra de manera ordenada los errores en el formulario si los hay , uno por uno hasta que se solicionen todos
+// y poder habilitar la accion del boton crear dog
     const mostrarError = (errors) => {
         if (errors.name)
             return errors.name
@@ -89,7 +95,7 @@ const Form = ({ allTemperaments }) => {
             return errors.allTemperaments
 
     }
-
+//accion que devuelve a la pagina principal
     const handleButonVolver = () => {
         navigate('/Home');
     }
@@ -108,7 +114,6 @@ const Form = ({ allTemperaments }) => {
                         <div className='divNombre'>
                             <label className='labelForm'>Nombre: </label>
                             <input name='name' className='inputFotoAndNname' onChange={handleChange} value={dogNew.name} placeholder='Nombre...' type='text' /><br />
-                            {/* {errors?.name && <p style={{ color: 'red' }}>{errors.name}</p>} */}
                         </div>
 
                         <div className='divAltura'>
@@ -116,14 +121,8 @@ const Form = ({ allTemperaments }) => {
                             <div className='divDosAltura'>
                                 <input className='inputDate' onChange={handleChange} value={dogNew.heightMin} placeholder='Min...' type='text' name='heightMin' /><span> - </span>
                                 <input className='inputDate' onChange={handleChange} value={dogNew.heightMax} placeholder='Max...' type='text' name='heightMax' /><br />
-                            </div>
-
-                            {/* {errors?.heightMin && <p style={{ color: 'red' }}>{errors.heightMin}</p>}
-                            {errors?.heightMax && <p style={{ color: 'red' }}>{errors.heightMax}</p>} */}
-
+                            </div>                           
                         </div>
-
-
 
                         <div className='divPeso'>
                             <label className='labelForm'>Peso:</label>
@@ -131,13 +130,7 @@ const Form = ({ allTemperaments }) => {
                                 <input className='inputDate' onChange={handleChange} value={dogNew.weightMin} placeholder='Min...' type='text' name='weightMin' /><span> - </span>
                                 <input className='inputDate' onChange={handleChange} value={dogNew.weightMax} placeholder='Max...' type='text' name='weightMax' /><br />
                             </div>
-
-                            {/* {errors?.weightMin && <p style={{ color: 'red' }}>{errors.weightMin}</p>}
-                            {errors?.weightMax && <p style={{ color: 'red' }}>{errors.weightMax}</p>} */}
                         </div>
-
-
-
 
                         <div className='divAños'>
                             <label className='labelFormAños'>Años de vida: </label>
@@ -145,9 +138,6 @@ const Form = ({ allTemperaments }) => {
                                 <input className='inputDate' onChange={handleChange} value={dogNew.ageMin} placeholder='Min...' type='text' name='ageMin' /><span> - </span>
                                 <input className='inputDate' onChange={handleChange} value={dogNew.ageMax} placeholder='Max...' type='text' name='ageMax' /><br />
                             </div>
-
-                            {/* {errors?.ageMin && <p style={{ color: 'red' }}>{errors.ageMin}</p>}
-                            {errors?.ageMax && <p style={{ color: 'red' }}>{errors.ageMax}</p>} */}
                         </div>
 
 
@@ -158,7 +148,6 @@ const Form = ({ allTemperaments }) => {
                                 <input className='inputFotoAndNname' onChange={handleChange} value={dogNew.image} placeholder='https://...' name='image' type='text' /><br />
 
                             </div>
-                            {/* {errors?.image && <p style={{ color: 'red' }}>{errors.image}</p>} */}
                         </div>
 
 
@@ -169,21 +158,13 @@ const Form = ({ allTemperaments }) => {
                                     <option value={name} key={id}>{name}</option>
                                 ))}
                             </select>
-                            {/* {errors?.allTemperaments && <p style={{ color: 'red' }}>{errors.allTemperaments}</p>} */}
-
-
                         </div>
+
                         <div className='divBotonCrearDog'>
                             {<p className='pMensajesError' >{errors ? mostrarError(errors) : ''}</p>}
                             <button className='botonCrearDog' name='botonCrearDog' disabled={mostrarError(errors) ? true : false}>¡ CREAR DOG !</button><br />
                         </div>
-
-
-
                     </div>
-
-
-
                 </form>
                 <img src={imageForm} name='imageForm' className='imageForm' />
             </div>

@@ -17,15 +17,15 @@ router.get('/dogs' , ( req , res ) =>{
         getDogs(req , res);
     
 });
-
+//ruta que accede a un dog en especifico por medio del id
 router.get('/dogs/:idRaza' , ( req , res ) =>{
     getDogsById(req , res);
 });
-
+//Ruta que sube un dog nuevo a la basa de datos
 router.post('/dogs' , ( req , res ) =>{
     postDog(req , res);
 });
-
+// ruta que accede a todos los temperamentos de la api 
 router.get('/temperaments' , ( req , res ) =>{
     getTemperaments(req , res);
 });

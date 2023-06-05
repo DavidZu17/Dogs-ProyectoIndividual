@@ -10,7 +10,7 @@ import { cargarAllDogsBD } from './redux/actions';
 
 
 
-
+// encargada de desplegar todos los componentes y rutas coorespondientes 
 function App(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -18,7 +18,8 @@ function App(props) {
 
   useEffect(() => {
     navigate('/');
-
+//carga los dogs y temperamentos de la bd
+// al iniciar la app
     if (props.dogs.length === 0) {
       dispatch(cargarAllDogsBD());
     }

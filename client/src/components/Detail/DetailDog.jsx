@@ -2,20 +2,11 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import './DetailDog.css';
-
+//Representa el componete del despliegue de un dog en especifico 
 const DetailDog = () => {
     const { id } = useParams();
+    //estado local que guerda el dog a mostrar 
     const [dog, setDog] = useState({});
-
-    const listTem = (temperaments) => {
-        let listTemp = '';
-        temperaments.forEach((tem) => {
-            listTemp += `${tem.name},`;
-        })
-        return listTem;
-    }
-
-
 
     useEffect(() => {
         async function fetData() {
