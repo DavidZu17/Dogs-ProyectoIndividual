@@ -28,14 +28,18 @@ function Home(props) {
 
 
     const handleFiltTem = async (evento) => {
-        if (busqueda.length === '') {
+
+        if(evento.target.value  !== 'T'){
+            if (busqueda.length === '') {
+                dispatch(orderDosgByTem(evento.target.value));
+                setBusquedaPorTemperamento(evento.target.value)
+            }
+            await dispatch(cargarAllDogsByName(busqueda));
+           
             dispatch(orderDosgByTem(evento.target.value));
             setBusquedaPorTemperamento(evento.target.value)
         }
-        await dispatch(cargarAllDogsByName(busqueda));
-       
-        dispatch(orderDosgByTem(evento.target.value));
-        setBusquedaPorTemperamento(evento.target.value)
+        
 
     }
 
@@ -48,7 +52,7 @@ function Home(props) {
             <Filters handleFiltTem={handleFiltTem} allTemperaments={allTemperaments.sort( ( a, b ) => a.name.localeCompare(b.name))} />
             <CardsDogs dogs={dogsByName.length !== 0 ? dogsByName : alldogs}
                 title={busqueda.length !== 0 ? `Se muestran los Dogs por nombre que contienen: ${busqueda} ${busquedaPorTemperamento.length !== 0 ? `Con temperamento ${busquedaPorTemperamento}` : ''} ` :
-                    `Todos los perros ${busquedaPorTemperamento.length !== 0 ? `Con temperamento ${busquedaPorTemperamento}` : ''}`}
+                    `Todos los perros ${busquedaPorTemperamento.length !== 0 ? `con temperamento ${busquedaPorTemperamento}` : ''}`}
                 botonesaMostrar={BOTONES_A_MOSTRAR}
                 cantidadPorPagina={CANTIDAD_POR_PAGINA}
                 botonesHermanos={BOTONES_HERMANOS}

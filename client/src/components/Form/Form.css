@@ -1,7 +1,6 @@
-.containerFP{
-    background-color: aqua;
+.containerFP {
     position: absolute;
-    background-image: url('../../images/imageForm.jpg');
+    background-image: url('../../images/fondoCards.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -9,27 +8,215 @@
     height: 100%;
     display: flex;
     flex-direction: row;
-    justify-content:center;
-}
-.inputDate{
-    position: relative;
-    width: 6%;
+    justify-content: center;
 }
 
-.containerCrear{
+.inputDate {
+    position: relative;
+    width: 10%;
+    border: none;
+    color: white;
+    border-radius: 10%;
+    background-color: #f39d2d;
+    border-bottom: 2px solid rgb(47, 42, 42);
+}
+.inputDate:hover {
+    border-color: #e1e5ea;
+    border-radius: 10%;
+    box-shadow: 0 0 8px #c27b1e;
+    background-color: #b87012;
+
+}
+
+.imageForm {
     position: absolute;
-    width: 80%;
+    top: 73.1%;
+    left: 18%;
+    height: 30%;
+}
+
+.containerCrear {
+    position: absolute;
+    width: 30%;
     height: 90%;
-    background-color: blue;
     display: flex;
     flex-direction: row;
-    justify-content:center;
-    top:5%
+    top: 7%;
+    background-color: #ffac3d;
+    border-radius: 17%;
+    color: white;
+    height: 86%;
+    align-items: center;
+    justify-content: center;
+
+    
+    backdrop-filter: blur(25px);
+    box-shadow: 0 6px 12px 0 #171615;
+    transition: 0.2s;
+    border-radius: 30px;
+
 }
-.containerForm{
+
+.containerForm {
     position: relative;
+    display: flex;
+    flex-direction: row;
+    top: -9.5%;
+    height: 79%;
+    width: 88%;
+    text-align: left;
+}
+
+.botonVolver {
+    position: absolute;
+    height: 13%;
+    width: 15%;
+    right: 2%;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    background-image: url('../../images/botonDevolver.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.divTitulo{
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.divNombre {
+    position: relative;
+    text-align: center;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.divAltura {
+    position: relative;
+    top: 4%;
+    display: flex;
+    flex-direction: row;
+}
+
+.divDosAltura {
+    position: relative;
+    left: 34%;
+}
+
+.divPeso {
+    position: relative;
+    top: 8%;
+    display: flex;
+    flex-direction: row;
+
+}
+.divDosPeso {
+    position: relative;
+    left: 38%;
+}
+
+.divAños {
+    position: relative;
+    top: 12%;
+    display: flex;
+    flex-direction: row;
+}
+.divDosAños {
+    position: relative;
+    left: 21%;
+}
+
+.divFoto {
+    position: relative;
+    top: 16%;
+    display: flex;
+    flex-direction: row;
+}
+.divDosFoto{
+    position: relative;
+    left: 12%;
+}
+
+.divTemperamentos {
+    position: relative;
+    top: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.pMensajes {
+    font-size: 10px;
+}
+
+.pMensajesError {
+    font-size: 14px;
+    color: yellow;
+    font-weight: bold;
     
+}
+
+.labelForm {
+    font-size: 22px;
+}
+.labelFormAños{
+    font-size: 22px;
+    width: 53%;
+}
+.inputFotoAndNname {
+    border: none;
+    color: white;    
+    border-radius: 10%;
+    background-color: #f39d2d;
+    border-bottom: 2px solid rgb(18, 17, 17);
+}
+.inputFotoAndNname:hover {
+    border-color: #e1e5ea;
+    border-radius: 10%;
+    box-shadow: 0 0 8px #c27b1e;
+    background-color: #b87012;
+
+}
+
+::placeholder {
+    color: rgb(244, 237, 237);
+    opacity: 1;
+}
+
+.selectAllTemperaments {
+    position: absolute;
+    width: 40%;
+    height: 98%;
+    left: 45%;
+
+    color: white;
+    box-shadow: none;
+    background: #da891e;
+    border: none;
+    box-shadow: 0 0 3px #f4eded;
+}
+
+.divBotonCrearDog {
+    position: relative;
+    top: 21%;
+}
+
+.botonCrearDog {
+    position: relative;
+    box-shadow: none;
+    background: #8a520a;
+    border: none;
+    padding: 10px;
+    box-shadow: 0 0 3px #f4eded;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 15px;
+    color: white;
+    font-weight: bold;
+
 }

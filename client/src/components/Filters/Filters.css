@@ -1,21 +1,83 @@
-.containerFilters{
+.containerFilters {
     text-align: center;
-    background-color: rgb(141, 53, 158);
-    display:flex;
-    justify-content: space-between;
+    background-color: #985a09;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:center;
     position: relative;
+    height: 55px;
 }
-.ordenTemperaments{
-    background-color: rgb(139, 87, 87);
+
+.ordenTemperaments {
+    position: relative;
+    align-items: center;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    width: 20%;
+    left: 2%;
+    height: 55px;
 }
-.orderTipo{
-    background-color: rgb(74, 115, 175);
+
+.divOrden {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 25%;
+    top: 5px;
+    left: 5%;
+    gap: 2%;
+    height: 55px;
+    background-color: transparent;
+    /* 5d3705 */
+}
+
+.orderTipo {
+    background-color: transparent;
+    align-items: start;
+    text-align: left;
+    height: 55px;
 
 }
-.orderAsOrDes{
-    background-color: rgb(119, 212, 161);
+
+.orderAsOrDes {
+    background-color: transparent;
+    align-items: start;
+    text-align: left;
+    height: 55px;
+}
+
+.selectOption {
+    position: relative;
+    width: 130px;
+    height: 35px;
+    left: 2%;
+    color: white;
+    box-shadow: none;
+    background: #ea982c;
+    border: none;
+    box-shadow: 0 0 3px #f4eded;
+    
+}
+
+.botonOrdenar {
+    position: relative;
+    height: 40px;
+    top : -4px;
+    box-shadow: none;
+    background: #ea982c;
+    border: none;
+    padding: 10px;
+    box-shadow: 0 0 3px #f4eded;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 15px;
+    color: white;
 
 }
-.selectOption{
-    width: 120px;
+
+@media (min-width: 400px) and (max-width: 800px) {
+    
 }

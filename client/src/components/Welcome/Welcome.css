@@ -7,8 +7,26 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url('../../images/huellasHome.png');
+    background-image: url('../../images/fondoWelcome.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+
+
+.linkWelcome{
+    position: relative;
+    font-size: 3.5em;
+    top: -7%;
+    color: #b17c54;
+    z-index: 1;
+    text-decoration: underline;
+    width: 45%;
+    left: 28%;
+}
+.linkWelcome:hover {
+    border-color: #e1e5ea;
+    border-radius: 62%;
+    box-shadow: 0 0 8px #b17c54;
 }

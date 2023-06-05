@@ -187,9 +187,9 @@ const postDog = async (req, res) => {
         */
         const { name, image, height, weight, age, temperaments } = req.body;
         //Se verifica que los datos hallan sido ingresados en su totalidad y no vacios
-        if (!name || !height || !weight || !image || !age || !temperaments
+        if (!name || !height || !weight  || !age || !temperaments
             || name.lenght === 0 || height.lenght === 0 || weight.lenght === 0
-            || image.lenght === 0 || age.lenght === 0 || temperaments.lenght === 0)
+            || age.lenght === 0 || temperaments.lenght === 0)
             return res.status(400).send('Faltan datos para el registro del nuevo Dog');
 
         //Se carga la lista de dog de Api

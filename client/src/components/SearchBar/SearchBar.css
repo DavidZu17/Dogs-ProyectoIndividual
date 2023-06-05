@@ -1,37 +1,91 @@
-.containerSearchBar{
+.containerSearchBar {
     text-align: center;
-    background-color: blue;
-    position: relative;
     display: flex;
     flex-direction: row;
-    justify-content:space-between;
-    height: 10%;
+    justify-content: space-between;
+    height: 90px;
+    padding: 3px;
+   
+}
+.imageDogsLogo{
+    position: absolute;
+    width: 14%;
+    left: 15%;
+
+}
+.logoSearch{
+    position: absolute;
+    height: 29%;
+    width: 17%;
+    left: -1px;
+    z-index: 1;
+
 }
 
-.searchInput{
-    position: absolute;
+.searchInput {
+    position: relative;
     border-radius: 15px;
     padding-left: 1%;
     font-size: 18px;
-    width: 40%;
-    height: 30%;
-    top : 30%;
-    left: 10%;
+    width: 44%;
+    height: 33%;
+    top: 30%;
+    left: 29%;
+    border: none;
+
 }
-.searchBoton{
+
+.iconoLupaSearch {
+    position: relative;
+    border: none;
+    background-color: transparent;
+    top: 30%;
+    height: 31px;
+    width: 31px;
+    left: 3.9%;
+    background-image: url('../../images/logoLupaSearch.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.searchInput:hover , .iconoLupaSearch:hover {
+    width: 44%;
+    border-color: #e1e5ea;
+    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+
+
+.searchBotonDogNuevo {
     position: relative;
     cursor: pointer;
     border: none;
+    right: 0.5%;
     background-color: transparent;
-    height: 60%;
-    width: 100%;
-    margin-top: 10px;
-    margin-left: 90px;
+    width: 70px;
+    height: 70px;
+
+    background-image: url('../../images/huellaBoton.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+
 }
-.searchBotonDogNuevo{
+.searchBotonDogNuevo:hover {
+    border-color: #e1e5ea;
+    border-radius: 54%;
+    box-shadow: 0 0 8px #c27b1e;
+}
+.divBotonAgregar {
+
     position: relative;
-    height: 30%;
-    width: 20%;
-    top: 20%;
-    right: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-weight: bolder;
+    right: 5%;
+
 }

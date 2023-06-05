@@ -72,7 +72,8 @@ export const submitDog = ( dogNew ) => {
                 payload : dogN
             })
         } catch (error) {
-            alert(`${error.response.data.error}`)         }
+            alert(`${error.message}`)        
+         }
 
     }
 }

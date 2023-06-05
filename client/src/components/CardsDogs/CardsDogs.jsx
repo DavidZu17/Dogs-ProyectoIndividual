@@ -50,7 +50,7 @@ function CardsDogs({
 
     return (
         <div className='containerAll'>
-            <div><h1>{title}</h1></div>
+            <div><h3>{title}</h3></div>
             {/*Se muestran 8 perros en la pagina de todo los que se cargaron*/}
             <div className="containerCardsDogs">
                 {dogsPaginaActual().map(( dog ) => (

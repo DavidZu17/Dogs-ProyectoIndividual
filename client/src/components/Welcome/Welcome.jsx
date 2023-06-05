@@ -1,11 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Welcome.css';
 
+
 function Welcome (){
+    
     return(
         <div className='containerWelcome'>  
-            <h1>Soy Welcome</h1>
-            <Link to={'/Home'}>Home</Link>  
+            <Link to={'/Home'} className='linkWelcome'>Welcome <br/> WORLD DOGS</Link> 
             
         </div>
     );

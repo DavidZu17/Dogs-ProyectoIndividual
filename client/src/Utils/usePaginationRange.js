@@ -12,7 +12,6 @@ export const useFuncionRangoDePaginacion = ({
   botonesHermanos,
   paginaActual,
 }) => {
-    console.log( totalDePaginas, ' utilssss')
  
     // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
     //El recuento de páginas se determina como siblingCount + firstPage + lastPage + currentPage + 2*DOTS

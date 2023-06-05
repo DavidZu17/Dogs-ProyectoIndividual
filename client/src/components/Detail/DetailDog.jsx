@@ -37,18 +37,18 @@ const DetailDog = () => {
     return (
         <div className="containerDetailDog">
 
-            <div>
-                <h2>ID :</h2><span><p>{dog.id}</p></span>
-                <h2>Nombre :</h2> <span><p> {dog?.name}</p></span>
-                <h2>Altura : </h2> <span><p>{dog?.height}</p></span>
-                <h2>Peso :</h2> <span><p> {dog?.weight}</p></span>
-                <h2>Temperamentos : </h2> <span><p>{ dog.alltemperaments}</p></span>
-                <h2>Años de vida :</h2> <span><p> {dog?.age}</p></span>
+            <div className="divInfo">
+                <h2>ID : {dog.id}</h2>
+                <h2>Nombre :</h2> <span>{dog?.name}</span>
+                <h2>Altura : </h2> <span>{dog?.height}</span>
+                <h2>Peso :</h2> <span> {dog?.weight}</span>
+                <h2>Temperamentos : </h2><p className="mensajeTemperamentos">{ dog.alltemperaments}</p>
+                <h2>Años de vida :</h2> <span> {dog?.age}</span>
 
             </div>
 
-            <div>
-                <img src={dog?.image} alt={dog?.image} />
+            <div className="divImage">
+                <img className="imageDetail" src={dog?.image} alt={dog?.image} />
             </div>
 
 
