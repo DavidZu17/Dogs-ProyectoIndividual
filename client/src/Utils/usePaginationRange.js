@@ -13,35 +13,23 @@ export const useFuncionRangoDePaginacion = ({
   paginaActual,
 }) => {
  
-    // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
-    //El recuento de páginas se determina como siblingCount + firstPage + lastPage + currentPage + 2*DOTS
+    //El recuento de páginas se determina como ( siblingCount + firstPage + lastPage + currentPage ) + 2*DOTS
     const totalPageNumbers = botonesaMostrar + 2 * botonesHermanos;
 
     /*
-          If the number of pages is less than the page numbers we want to show in our
-          paginationComponent, we return the range [1..totalPageCount]
-
           Si el número de páginas es inferior a los números de página que queremos mostrar en nuestro
-          paginationComponent, devolvemos el rango [1..totalPageCount]
+          paginationComponent, devolvemos el rango [1..total de paginas ]
         */
     if (totalPageNumbers >= totalDePaginas) {
-      return rango(1, totalDePaginas);
+      return rango( 1, totalDePaginas );
     }
 
-    const hermanosIzquierdos = Math.max(paginaActual - botonesHermanos, 1);
-    const hermanosDerechos = Math.min(
-      paginaActual + botonesHermanos,
-      totalDePaginas
-    );
+    const hermanosIzquierdos = Math.max( paginaActual - botonesHermanos, 1 );
+    const hermanosDerechos = Math.min( paginaActual + botonesHermanos, totalDePaginas );
 
     /*
-          We do not want to show dots if there is only one position left 
-          after/before the left/right page count as that would lead to a change if our Pagination
-          component size which we do not want
-
           No queremos mostrar puntos si solo queda una posición
-          después/antes de que la página izquierda/derecha cuente, ya que eso conduciría a un cambio si nuestra Paginación
-          tamaño del componente que no queremos
+          después/antes de que la página izquierda/derecha cuente, ya que eso conduciría a un cambio de nuestra Paginación
         */
     const mostrarPuntosIzquierdos = hermanosIzquierdos > 2;
     const mostrarPuntosDerechos = hermanosDerechos <= totalDePaginas - 2;
