@@ -32,7 +32,7 @@ export default function reducer(state = inicitialState, { type, payload }) {
             /**Si el usuario tiene dogs buscados por name en la pagina se filtran esos perros */
             if (state.dogsByName.length !== 0) {
                 /**Se verifica primero si el comando es traer los dogs para no consumir recursos filtrando */
-                if (payload === 'allDogs') {
+                if (payload === 'allTemperaments') {
                     return {
                         ...state,
                         dogsByName: [...state.copydogByName]

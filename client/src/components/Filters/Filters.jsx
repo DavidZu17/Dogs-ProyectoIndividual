@@ -41,7 +41,7 @@ function Filters({ handleFiltTem, allTemperaments }) {
                 <h4>Filtro por :</h4>
                 <select mode="multiple" onChange={handleFiltTem} className='selectOption'>
                     <option value="T">Temperamentos</option>
-                    <option value='allDogs' key='0'>All Dogs</option>
+                    <option value='allTemperaments' key='0'>All Temperamentos</option>
                     {/** Se despliegan los temperamentos pasados por parametros que vienen desde la carga de datos de la api */}
                     {allTemperaments?.map(({ name, id }) => (
                         <option value={name} key={id}>
