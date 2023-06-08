@@ -26,7 +26,7 @@ export const cargarAllDogsBD = () => {
 }
 //Se encarga de cargar todos los dosg por el nombre buscado por paramemtro po medio de la ruta del servidor si no encuntra retorna una lita vacia para asi 
 // desplegar todos los dogs y un mensaje con la novedad
-export const cargarAllDogsByName = ( name ) => {
+export const cargarAllDogsByName = ( name , encontro ) => {
     const endpointDogs = `http://localhost:3001/dogs/?name=${ name }`;
     return async (dispatch) => {
         try {
@@ -38,7 +38,7 @@ export const cargarAllDogsByName = ( name ) => {
                 },
             })
         } catch (error) {
-            alert(`${error.response.data.error} \n Se mostraran todos los perros `)
+            encontro ( error );
             return dispatch({
                 type: CARGAR_DOGS_BY_NAME,
                 payload: {dogsByName:[]},

@@ -5,17 +5,30 @@ import { useEffect, useState } from 'react';
 
 //Componente encargado de todo lo que tenga que ver de los filtros 
 // de temperamentos y los de ordenamiento
-function Filters({ handleFiltTem, allTemperaments }) {
+function Filters({ allTemperaments }) {
     const dispatch = useDispatch();
     //Estados que guardan las selecciones de ordenamiento
     const [orderAsOrDes, setOrderAsOrDes] = useState('');
     const [orderByNameOrWeight, setOrderByNameOrWeight] = useState('');
 
+    //se filtra por temepramento indicado 
+    const handleFiltTem = async (evento) => {
+        if (evento.target.value !== 'T') {
+            try {
+                dispatch(orderDosgByTem(evento.target.value));
+            } catch (error) {
+                alert(error.message)
+            }
+        }
+        else {
+            alert('Selecione uno diferente de el primer item para filtrar por temperamento deseado o all Temperament para todos los temperamentos en la lista seleccionanda')
+        }
+    }
 
-    
 
-// fncion que despacha al reducer el ordenamiento por nombre o peso 
-// dependiendo de si es ascedente o descendente
+
+    // fncion que despacha al reducer el ordenamiento por nombre o peso 
+    // dependiendo de si es ascedente o descendente
     const handleOrder = () => {
         if (orderAsOrDes.length !== 0 && orderByNameOrWeight.length !== 0)
             dispatch(ordenarByFilter(orderAsOrDes, orderByNameOrWeight));
@@ -23,11 +36,11 @@ function Filters({ handleFiltTem, allTemperaments }) {
             alert(' Para filtrar se debe de tener un tipo ( Nombre / Peso ) y un tipo (Ascendente / Descendente )')
 
     }
-//actualiza el estado de ordenamiento ascedente o descendente
+    //actualiza el estado de ordenamiento ascedente o descendente
     const orderA = (evento) => {
         setOrderAsOrDes(evento.target.defaultValue)
     }
-// actualiza el estado de ordenamiento por nombre o por peso 
+    // actualiza el estado de ordenamiento por nombre o por peso 
     const orderB = (evento) => {
         setOrderByNameOrWeight(evento.target.defaultValue);
     }

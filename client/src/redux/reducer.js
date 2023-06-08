@@ -31,7 +31,7 @@ export default function reducer(state = inicitialState, { type, payload }) {
             let copyOrder = [];
             /**Si el usuario tiene dogs buscados por name en la pagina se filtran esos perros */
             if (state.dogsByName.length !== 0) {
-                /**Se verifica primero si el comando es traer los dogs para no consumir recursos filtrando */
+                /**Se verifica primero si el comando es traer los dogs con todos los temperamentos para no consumir innecesariamente filtrando */
                 if (payload === 'allTemperaments') {
                     return {
                         ...state,
@@ -43,16 +43,21 @@ export default function reducer(state = inicitialState, { type, payload }) {
                     if (dog.alltemperaments?.includes(payload))
                         copyOrder.push(dog);
                 });
-                return {
-                    ...state,
-                    dogsByName: copyOrder
+                if(copyOrder.length !== 0){
+                    return {
+                        ...state,
+                        dogsByName: copyOrder
+                    }
+                }
+                else{
+                    throw new Error('El temperamento buscado en esta lista no se encuentra')
                 }
             }
             else {
                 /** En caso de que se tenga en lista todos los perros se filtra esa lista
-                 * Se verifica primero si el comando es traer los dogs para no consumir recursos filtrando
+                 * Se verifica primero si el comando es traer los dogs con todos los temperamentos para no consumir innecesariamente filtrando
                  */
-                if (payload === 'allDogs') {
+                if (payload === 'allTemperaments') {
                     return {
                         ...state,
                         dogs: [...state.copyDog]
